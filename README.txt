@@ -1,8 +1,3 @@
-Wir geben alle Rechte zur Nutzung frei
-
-
-
-
 Count_edits_in_fastq: 
 
 Contains bash and python script to count edits in fastq files as well as reference files to search edits. 
