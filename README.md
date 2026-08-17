@@ -1,7 +1,7 @@
 # 🧬 cPRIME
-We introduce cPRIME (prime editing with cDNA readout), a scalable method for assessing variant effects on RNA metabolism. cPRIME employs prime editing to insert genetic variants into their endogenous genomic locus, and quantifies changes in RNA abundance by comparing editing frequencies between genomic DNA and complementary DNA.
+We introduce cPRIME (prime editing with cDNA readout), a scalable method for assessing variant effects at RNA level. cPRIME uses prime editing to insert genetic variants into endogenous genomic loci, followed by the quantification of changes in variant frequencies at RNA (cDNA) and genomic DNA (gDNA) level. cPRIME provides a platform for studying the post-transcriptional consequences of genetic variants in their genomic context and establishes a framework for the functional interpretation of RNA-altering variants in cancer and other diseases.
 
-This repository contains code to reproduce results of our publication "cPRIME enables the systematic mapping of genetic variant effects on RNA metabolism".
+This repository contains code to reproduce results of our publication "cPRIME enables endogenous mapping of genetic variant effects at RNA level".
 
 ## ⭐ Highlights
 - scripts to compute synonymous marker variants
@@ -9,17 +9,9 @@ This repository contains code to reproduce results of our publication "cPRIME en
 - code to select pegRNAs from PrimeDesign output
 - fast and easy to use pipeline for read counting that contain variants introduced by prime editing
 
-## ℹ️ Overview
-This repository is structured in two sections:
-- ex27_screen
-  
-  -> contains code and associated data to reproduce results of the intial exon 27 screen of the NF1 gene
-- multi_exon_screen
-  
-  -> contains code and associated data to reproduce results of the multi exon screen of the NF1 gene
+## 📁 ex27_screen
 
-## ex27_screen
-
+-> find code and associated data to reproduce results of the initial exon 27 screen of the NF1 gene
 
 ### Count_edits_in_fastq
 Contains Bash and Python scripts to count edits in FASTQ files.
@@ -79,7 +71,9 @@ Contains the R script and reference files to calculate the Odds Ratio.
 
 
 
-## multi_exon_screen
+## 📁 multi_exon_screen
+
+-> find code and associated data to reproduce results of the multi exon screen of the NF1 gene
 
 ### library_design
 - create_gff_db.py -> creates a local database from a gff file which is used by the other scripts to get transcript information from the NF1 gene. Can be used from the command line like python3 create_gff_db.py input.gff output.db
@@ -99,5 +93,5 @@ count_edits_fast.sh -p /path/to/fastq_files_folder -s /path/to/searching_sequenc
 ### analysis
 Contains code to reproduce figures 3 and 4 of the manuscript and other analyses related to the multi exon screen.
 
-## ✍️ Authors
+## 🔎 Further reading
 If you are interested in our work feel free to visit our website (https://www.boettcher-lab.net/) to learn more.
