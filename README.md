@@ -3,46 +3,24 @@ We introduce cPRIME (prime editing with cDNA readout), a scalable method for ass
 
 This repository contains code to reproduce results of our publication "cPRIME enables endogenous mapping of genetic variant effects at RNA level".
 
+FASTQ files associated with this analysis can be found under the SRA BioProject accession PRJNA1257064.
+
 ## ⭐ Highlights
 - scripts to compute synonymous marker variants
 - synonymous marker filtering
 - code to select pegRNAs from PrimeDesign output
 - fast and easy to use pipeline for read counting that contain variants introduced by prime editing
 
+## 💻 required software
+- a running python and R environment (code was tested on python 3.12 and R 4.3.0)
+- FLASH v1.2.11: https://ccb.jhu.edu/software/FLASH/
+- Pangolin v.1.0.2: https://github.com/tkzeng/Pangolin
+- SpliceAI v.1.3.1: https://github.com/illumina/spliceAI
+- PrimeDesign: https://github.com/pinellolab/PrimeDesign
+
 ## 📁 ex27_screen
 
 -> find code and associated data to reproduce results of the initial exon 27 screen of the NF1 gene
-
-### Count_edits_in_fastq
-Contains Bash and Python scripts to count edits in FASTQ files.
-
-Count_edits.sh -> you have to change in line 119 the reference file depending on if you want to search for hits in:
- - gDNA (with synonymous marker)
- - cDNA (with synonymous marker)
- - gDNA (with wild type sequence (WT); no intended or synonymous marker edit)
- - gDNA (without synonymous marker; only intended edit)
-
-Line 119:  awk '{ print $2 }' Searching_sequences_gDNA.txt > sequences.txt
-
-### search_sequences
-Contains the search sequences that were used to count the number of reads containing combined variants.
-Use these search sequences as described in Count_edits_in_fastq/Count_edits.sh
-
-
-### Design_pegRNAs_additional_STOP_codon
-Contains R script to design PrimeDesign input files for nonsense mutations and synonymous mutations on codon positions in exon 27 that are not described in cBioPortal. Also includes R scripts to generate the reference files with the search sequences, to determine the number of each intended edit in the fastq files.
-
-- Design_input_sequences_for_PrimeDesign_STOP_and_synonymous_edit.R -> design input sequences for PrimeDesign
-- Design_searching_sequences_for_STOP_and_synonymous_edit_cDNA.R -> design searching sequences for additional nonsense (STOP) and synonymous mutations for cDNA
-- Design_searching_sequences_for_STOP_and_synonymous_edit_gDNA.R -> design searching sequences for additional nonsense (STOP) and synonymous mutations for gDNA
-- Design_WT_sequences_for_STOP_and_synonymous_edit_cDNA.R -> design WT sequences for additional nonsense (STOP) and synonymous mutations for cDNA
-- Design_WT_sequences_for_STOP_and_synonymous_edit_gDNA.R -> design WT sequences for additional nonsense (STOP) and synonymous mutations for gDNA
-
-- Chr17_full_sequence.txt -> Sequence of chromosome 17 from hg19 genome
-- NF1-Exons-position.txt -> Information about start and end position of each exon from NF1 in chromosome 17
-
-Additional nonsense mutations or synonymous edits that are missing in the final Overview_names.xlsx list are removed manually for example all InDels are removed.
-
 
 ### Design_pegRNAs_cBioPortal_mutations
 Contains R script to design PrimeDesign input files for the mutations listed in cBioPortal for exon 27. Also includes R scripts to generate the reference files with the search sequences, to determine the number of each intended edit in the fastq files.
@@ -64,6 +42,35 @@ For example: Start_codon_bp_count 3 means that the first codon of the exon start
 - Design_WT_searching_sequences_for_synonymous_edit_gDNA.R -> design WT sequences for synonymous edit for gDNA
 
 Mutations or synonymous edits that are missing in the final Overview_names.xlsx list are removed manually for example all InDels are removed.
+
+### Design_pegRNAs_additional_STOP_codon
+Contains R script to design PrimeDesign input files for nonsense mutations and synonymous mutations on codon positions in exon 27 that are not described in cBioPortal. Also includes R scripts to generate the reference files with the search sequences, to determine the number of each intended edit in the fastq files.
+
+- Design_input_sequences_for_PrimeDesign_STOP_and_synonymous_edit.R -> design input sequences for PrimeDesign
+- Design_searching_sequences_for_STOP_and_synonymous_edit_cDNA.R -> design searching sequences for additional nonsense (STOP) and synonymous mutations for cDNA
+- Design_searching_sequences_for_STOP_and_synonymous_edit_gDNA.R -> design searching sequences for additional nonsense (STOP) and synonymous mutations for gDNA
+- Design_WT_sequences_for_STOP_and_synonymous_edit_cDNA.R -> design WT sequences for additional nonsense (STOP) and synonymous mutations for cDNA
+- Design_WT_sequences_for_STOP_and_synonymous_edit_gDNA.R -> design WT sequences for additional nonsense (STOP) and synonymous mutations for gDNA
+
+- Chr17_full_sequence.txt -> Sequence of chromosome 17 from hg19 genome
+- NF1-Exons-position.txt -> Information about start and end position of each exon from NF1 in chromosome 17
+
+Additional nonsense mutations or synonymous edits that are missing in the final Overview_names.xlsx list are removed manually for example all InDels are removed.
+
+### search_sequences
+Contains the search sequences that were used to count the number of reads containing combined variants.
+Use these search sequences as described in Count_edits_in_fastq/Count_edits.sh
+
+### Count_edits_in_fastq
+Contains Bash and Python scripts to count edits in FASTQ files.
+
+Count_edits.sh -> you have to change in line 119 the reference file depending on if you want to search for hits in:
+ - gDNA (with synonymous marker)
+ - cDNA (with synonymous marker)
+ - gDNA (with wild type sequence (WT); no intended or synonymous marker edit)
+ - gDNA (without synonymous marker; only intended edit)
+
+Line 119:  awk '{ print $2 }' Searching_sequences_gDNA.txt > sequences.txt
 
 
 ### Odds_Ratio
